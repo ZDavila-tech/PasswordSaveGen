@@ -23,13 +23,15 @@ class Main{
         mainframe.setVisible(true);
     }
 
-    void GenPass(){
+    static void GenPass(){
 
     }
-    void createPanel(){
-        
+    static void createPanel(){
+        p1 = new JPanel();
+        p1.setLayout(new BoxLayout(p1, BoxLayout.Y_AXIS));
     }
     public static void main(String args[]) throws IOException{
         createFrame();
+        createPanel();
     }
 }
