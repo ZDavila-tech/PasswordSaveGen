@@ -32,12 +32,15 @@ public class Main{
         p1 = new JPanel();
         p1.setLayout(new BoxLayout(p1, BoxLayout.Y_AXIS));
 
+        //Button to view Saved Passwords 
         view.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e){
                 view = (JButton)e.getSource();
             }
         });
+        
+        //Button to generate a unique Password that is not already saved
         generate.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e){
