@@ -1,4 +1,6 @@
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -29,6 +31,19 @@ public class Main{
     static void createPanel(){
         p1 = new JPanel();
         p1.setLayout(new BoxLayout(p1, BoxLayout.Y_AXIS));
+
+        view.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(final ActionEvent e){
+                view = (JButton)e.getSource();
+            }
+        });
+        generate.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(final ActionEvent e){
+                generate = (JButton)e.getSource();
+            }
+        });
     }
     public static void main(String args[]) throws IOException{
         createFrame();
