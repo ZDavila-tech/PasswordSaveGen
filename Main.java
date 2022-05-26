@@ -2,6 +2,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -15,6 +16,10 @@ public class Main{
     static JLabel key, used, username;
 
 
+    public static void main(String args[]) throws IOException {
+        createPanel();
+        createFrame();
+      }
     
     //create the main frame of the project
     static void createFrame(){
@@ -25,12 +30,33 @@ public class Main{
         mainframe.setVisible(true);
     }
 
-    static void GenPass(){
+    //generate random password
+    private static char[] GenPass(int length){
+        String capital = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lower = "abcdefghijklmnopqrstuvwxyz";
+        String numbers = "1234567890";
+        String combinedChar = capital + lower + numbers;
+        Random random = new Random();
+        char[] newpass =  new char[length];
 
+        newpass[0] = capital.charAt(random.nextInt(capital.length()));
+        newpass[1] = numbers.charAt(random.nextInt(numbers.length()));
+        newpass[2] = lower.charAt(random.nextInt(lower.length()));
+
+        for(int i = 3; i < length; i++){
+            newpass[i] = combinedChar.charAt(random.nextInt(combinedChar.length()));
+        }
+
+        return newpass;
     }
+    //creating the Panel to put in the frame
     static void createPanel(){
         p1 = new JPanel();
-        p1.setLayout(new BoxLayout(p1, BoxLayout.Y_AXIS));
+        p1.setLayout(null);
+        p1.add(view);
+        p1.add(generate);
+        view.setBounds(150, 180, 200, 25);
+        generate.setBounds(150, 220, 200, 25);
 
         //Button to view Saved Passwords 
         view.addActionListener(new ActionListener(){
@@ -45,11 +71,10 @@ public class Main{
             @Override
             public void actionPerformed(final ActionEvent e){
                 generate = (JButton)e.getSource();
+                GenPass(9);
             }
         });
     }
-    public static void main(String args[]) throws IOException {
-        createPanel();
-        createFrame();
-      }
+
+
 }
