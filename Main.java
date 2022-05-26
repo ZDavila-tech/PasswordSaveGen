@@ -14,6 +14,8 @@ public class Main{
     static JButton view = new JButton("View Saved Passwords");
     static JButton generate = new JButton("Generate Password");
     static JLabel key, used, username;
+    static JTextField password;
+    static char[] newpass;
 
 
     public static void main(String args[]) throws IOException {
@@ -37,7 +39,7 @@ public class Main{
         String numbers = "1234567890";
         String combinedChar = capital + lower + numbers;
         Random random = new Random();
-        char[] newpass =  new char[length];
+        newpass =  new char[length];
 
         newpass[0] = capital.charAt(random.nextInt(capital.length()));
         newpass[1] = numbers.charAt(random.nextInt(numbers.length()));
@@ -49,6 +51,7 @@ public class Main{
 
         return newpass;
     }
+
     //creating the Panel to put in the frame
     static void createPanel(){
         p1 = new JPanel();
@@ -57,6 +60,7 @@ public class Main{
         p1.add(generate);
         view.setBounds(150, 180, 200, 25);
         generate.setBounds(150, 220, 200, 25);
+        
 
         //Button to view Saved Passwords 
         view.addActionListener(new ActionListener(){
@@ -72,6 +76,11 @@ public class Main{
             public void actionPerformed(final ActionEvent e){
                 generate = (JButton)e.getSource();
                 GenPass(9);
+                password = new JTextField();
+                p1.add(password);  
+                password.setBounds(150, 250, 200, 25);
+                password.setText(String.valueOf(newpass));
+                
             }
         });
     }
