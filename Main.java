@@ -78,6 +78,7 @@ public class Main{
                 GenPass(9);
                 password = new JTextField();
                 p1.add(password);  
+                password.setEditable(false);
                 password.setBounds(150, 250, 200, 25);
                 password.setText(String.valueOf(newpass));
                 
