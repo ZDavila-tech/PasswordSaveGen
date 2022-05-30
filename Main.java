@@ -17,8 +17,14 @@ public class Main{
     static JTextField password;
     static String newpass;
     static JTextField length = new JTextField();
+    static JTextField website = new JTextField("Website or App Name");
     static JButton submit = new JButton("Submit");
+    static JButton yes = new JButton("Yes");
+    static JButton no = new JButton("No");
     static JLabel question = new JLabel("How long do you want the password?");
+    static JLabel question1 = new JLabel("Would you like to save this password?");
+    static JLabel question2 = new JLabel("What website/app is this for?");
+    static JLabel unipass = new JLabel();
     static int lengthpass;
 
     public static void main(String args[]) throws IOException {
@@ -30,7 +36,7 @@ public class Main{
     static void createFrame(){
         mainframe = new JFrame("Password Saver and Generator");
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainframe.setSize(500,500);
+        mainframe.setSize(500,1000);
         mainframe.add(p1);
         mainframe.setVisible(true);
     }
@@ -54,7 +60,6 @@ public class Main{
         }
 
         newpass = new String(password);
-        System.out.println(newpass);
         
    }
 
@@ -105,6 +110,32 @@ public class Main{
             public void actionPerformed(final ActionEvent e) {
                 lengthpass = Integer.parseInt(length.getText());
                 GenPass();
+                p1.add(unipass);
+                unipass.setText(newpass);
+                unipass.setBounds(310, 310, 100, 25);
+                p1.add(question1);
+                question1.setBounds(150, 340, 300, 25);
+                p1.add(yes);
+                p1.add(no);
+                yes.setBounds(150, 370, 100, 25);
+                no.setBounds(250, 370, 100, 25);
+
+            }
+        });
+
+        yes.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+               
+
+            }
+        });
+
+        no.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+               
+
             }
         });
     }
