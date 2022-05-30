@@ -13,17 +13,19 @@ public class Main{
     static JPasswordField savekey;
     static JButton view = new JButton("View Saved Passwords");
     static JButton generate = new JButton("Generate Password");
-    static JLabel key, used, username;
     static JTextField password;
     static String newpass;
     static JTextField length = new JTextField();
-    static JTextField website = new JTextField("Website or App Name");
+    static JTextField website = new JTextField();
+    static JTextField user = new JTextField();
     static JButton submit = new JButton("Submit");
     static JButton yes = new JButton("Yes");
     static JButton no = new JButton("No");
+    static JButton save = new JButton("Save");
     static JLabel question = new JLabel("How long do you want the password?");
     static JLabel question1 = new JLabel("Would you like to save this password?");
     static JLabel question2 = new JLabel("What website/app is this for?");
+    static JLabel username = new JLabel("Provide username or email addess used to login.");
     static JLabel unipass = new JLabel();
     static int lengthpass;
 
@@ -105,6 +107,7 @@ public class Main{
             }
         });
 
+        //Use the GenPass function to generate and display a password
         submit.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -122,19 +125,35 @@ public class Main{
 
             }
         });
-
+        //Chose to save the password. Will be given the chance to insert website and username
         yes.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e) {
-               
-
+               p1.add(question2);
+               question2.setBounds(150, 400, 300, 25);
+               p1.add(website);
+               website.setBounds(150,430,200,25);
+               p1.add(username);
+               username.setBounds(125,460,300,25);
+               p1.add(user);
+               user.setBounds(150, 490, 200, 25);
+                p1.add(save);
+                save.setBounds(200, 520, 100, 25);
             }
         });
 
         no.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e) {
-               
+              
+
+            }
+        });
+
+        save.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+              
 
             }
         });
