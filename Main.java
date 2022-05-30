@@ -52,6 +52,16 @@ public class Main{
         return newpass;
     }
 
+    private static void viewList(){
+        JFrame list = new JFrame("Saved Passwords");
+        list.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        list.setSize(500, 500);
+        list.setVisible(true);
+        JList savpass = new JList<>();
+
+
+    }
+
     //creating the Panel to put in the frame
     static void createPanel(){
         p1 = new JPanel();
@@ -67,6 +77,7 @@ public class Main{
             @Override
             public void actionPerformed(final ActionEvent e){
                 view = (JButton)e.getSource();
+                viewList();
             }
         });
         
