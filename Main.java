@@ -9,14 +9,17 @@ import javax.swing.*;
 public class Main{
     //All static variables that are shared in all methods throughout the code
     static JFrame mainframe;
-    static JPanel p1, p2;
+    static JPanel p1;
     static JPasswordField savekey;
     static JButton view = new JButton("View Saved Passwords");
     static JButton generate = new JButton("Generate Password");
     static JLabel key, used, username;
     static JTextField password;
-    static char[] newpass;
-
+    static String newpass;
+    static JTextField length = new JTextField();
+    static JButton submit = new JButton("Submit");
+    static JLabel question = new JLabel("How long do you want the password?");
+    static int lengthpass;
 
     public static void main(String args[]) throws IOException {
         createPanel();
@@ -33,31 +36,33 @@ public class Main{
     }
 
     //generate random password
-    private static char[] GenPass(int length){
-        String capital = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   static void GenPass(){
+        String capital = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
         String lower = "abcdefghijklmnopqrstuvwxyz";
-        String numbers = "1234567890";
-        String combinedChar = capital + lower + numbers;
+        String number = "1234567890";
+        String specialchar = "!@#$%^&*";
+        String combo = lower + number + capital + specialchar;
         Random random = new Random();
-        newpass =  new char[length];
+        char[] password = new char[lengthpass];
 
-        newpass[0] = capital.charAt(random.nextInt(capital.length()));
-        newpass[1] = numbers.charAt(random.nextInt(numbers.length()));
-        newpass[2] = lower.charAt(random.nextInt(lower.length()));
-
-        for(int i = 3; i < length; i++){
-            newpass[i] = combinedChar.charAt(random.nextInt(combinedChar.length()));
+        password[0] = lower.charAt(random.nextInt(lower.length()));
+        password[1] = number.charAt(random.nextInt(number.length()));
+        password[2] = capital.charAt(random.nextInt(capital.length()));
+        password[3] = specialchar.charAt(random.nextInt(specialchar.length()));
+        for(int i = 4; i<lengthpass;i++){
+            password[i] = combo.charAt(random.nextInt(combo.length()));
         }
 
-        return newpass;
-    }
+        newpass = new String(password);
+        System.out.println(newpass);
+        
+   }
 
     private static void viewList(){
         JFrame list = new JFrame("Saved Passwords");
         list.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         list.setSize(500, 500);
         list.setVisible(true);
-        JList savpass = new JList<>();
 
 
     }
@@ -86,13 +91,20 @@ public class Main{
             @Override
             public void actionPerformed(final ActionEvent e){
                 generate = (JButton)e.getSource();
-                GenPass(9);
-                password = new JTextField();
-                p1.add(password);  
-                password.setEditable(false);
-                password.setBounds(150, 250, 200, 25);
-                password.setText(String.valueOf(newpass));
-                
+                p1.add(question);
+                p1.add(length);
+                p1.add(submit);
+                question.setBounds(150, 250, 300, 25);
+                length.setBounds(200, 280, 100, 25);
+                submit.setBounds(200, 310, 100, 25);;
+            }
+        });
+
+        submit.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                lengthpass = Integer.parseInt(length.getText());
+                GenPass();
             }
         });
     }
