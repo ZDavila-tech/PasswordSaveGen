@@ -2,6 +2,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.*;
@@ -10,24 +11,29 @@ public class Main{
     //All static variables that are shared in all methods throughout the code
     static JFrame mainframe;
     static JPanel p1;
+    //Textfields
     static JPasswordField savekey;
-    static JButton view = new JButton("View Saved Passwords");
-    static JButton generate = new JButton("Generate Password");
     static JTextField password;
-    static String newpass;
     static JTextField length = new JTextField();
     static JTextField website = new JTextField();
     static JTextField user = new JTextField();
+    //Buttons
+    static JButton view = new JButton("View Saved Passwords");
+    static JButton generate = new JButton("Generate Password");
     static JButton submit = new JButton("Submit");
     static JButton yes = new JButton("Yes");
     static JButton no = new JButton("No");
     static JButton save = new JButton("Save");
+    //Labels
     static JLabel question = new JLabel("How long do you want the password?");
     static JLabel question1 = new JLabel("Would you like to save this password?");
     static JLabel question2 = new JLabel("What website/app is this for?");
     static JLabel username = new JLabel("Provide username or email addess used to login.");
     static JLabel unipass = new JLabel();
+    //Numbers, Strings, etc.
+    static String newpass;
     static int lengthpass;
+    static String usernme, webname, info;
 
     public static void main(String args[]) throws IOException {
         createPanel();
@@ -65,11 +71,12 @@ public class Main{
         
    }
 
-    private static void viewList(){
+     static void viewList(){
         JFrame list = new JFrame("Saved Passwords");
         list.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         list.setSize(500, 500);
         list.setVisible(true);
+
 
 
     }
@@ -149,12 +156,19 @@ public class Main{
 
             }
         });
-
+        //Retrieve user input from website and username and convert into strings to save in Hash Map
         save.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e) {
-              
+              usernme = user.getText();
+              webname = website.getText();
 
+            //Created one string for username and website to use in a Hashmap with Password
+              info = webname+"\n"+usernme;
+
+              System.out.println(usernme);
+              System.out.println(webname);
+              System.out.println(info);
             }
         });
     }
