@@ -1,8 +1,9 @@
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.swing.*;
@@ -34,6 +35,7 @@ public class Main{
     static String newpass;
     static int lengthpass;
     static String usernme, webname, info;
+    static HashMap<String, String> savedPass = new HashMap<String, String>();
 
     public static void main(String args[]) throws IOException {
         createPanel();
@@ -76,9 +78,25 @@ public class Main{
         list.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         list.setSize(500, 500);
         list.setVisible(true);
+        JTextArea content = new JTextArea();
+        content.setEditable(false);
+        content.setBounds(0, 0, 300, 300);;
+        content.setBorder(BorderFactory.createLineBorder(Color.BLACK,5));
+        list.add(content);
+        String contents = savedPass.toString();
+        content.setText(contents);
+        System.out.println(contents);
+     
 
 
 
+    }
+    static void clear(){
+        p1.remove(question1);
+        p1.remove(unipass);
+        p1.remove(submit);
+        p1.remove(length);
+        p1.remove(question);
     }
 
     //creating the Panel to put in the frame
@@ -152,10 +170,11 @@ public class Main{
         no.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e) {
-              
-
+               no= (JButton)e.getSource();
+                clear();
             }
         });
+
         //Retrieve user input from website and username and convert into strings to save in Hash Map
         save.addActionListener(new ActionListener(){
             @Override
@@ -165,6 +184,10 @@ public class Main{
 
             //Created one string for username and website to use in a Hashmap with Password
               info = webname+"\n"+usernme;
+
+              //Saved information into the Hash Map
+              savedPass.put(info, newpass);
+
 
               System.out.println(usernme);
               System.out.println(webname);
