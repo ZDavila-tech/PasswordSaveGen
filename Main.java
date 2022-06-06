@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
@@ -35,7 +35,7 @@ public class Main{
     static String newpass;
     static int lengthpass;
     static String usernme, webname, info;
-    static HashMap<String, String> savedPass = new HashMap<String, String>();
+    static ArrayList<String> series = new ArrayList<String>();
 
     public static void main(String args[]) throws IOException {
         createPanel();
@@ -83,12 +83,9 @@ public class Main{
         content.setBounds(0, 0, 300, 300);;
         content.setBorder(BorderFactory.createLineBorder(Color.BLACK,5));
         list.add(content);
-        String contents = savedPass.toString();
-        content.setText(contents);
-        System.out.println(contents);
-     
-
-
+        for(String s:series){
+            content.append(s + "\n"+"\n");
+        }
 
     }
     static void clear(){
@@ -182,16 +179,9 @@ public class Main{
               usernme = user.getText();
               webname = website.getText();
 
-            //Created one string for username and website to use in a Hashmap with Password
-              info = webname+"\n"+usernme;
-
-              //Saved information into the Hash Map
-              savedPass.put(info, newpass);
-
-
-              System.out.println(usernme);
-              System.out.println(webname);
-              System.out.println(info);
+            //Created one string for username, website, and password
+              info = webname+"\n"+usernme+"\n"+newpass;
+                series.add(info);
             }
         });
     }
