@@ -11,7 +11,7 @@ import javax.swing.*;
 public class Main{
     //All static variables that are shared in all methods throughout the code
     static JFrame mainframe;
-    static JPanel p1;
+    static JPanel p1,p2;
     //Textfields
     static JPasswordField savekey;
     static JTextField password;
@@ -48,6 +48,7 @@ public class Main{
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainframe.setSize(500,1000);
         mainframe.add(p1);
+        mainframe.add(p2);
         mainframe.setVisible(true);
     }
 
@@ -89,17 +90,24 @@ public class Main{
 
     }
     static void clear(){
-        p1.remove(question1);
-        p1.remove(unipass);
-        p1.remove(submit);
-        p1.remove(length);
-        p1.remove(question);
+        p2.remove(question1);
+        p2.remove(unipass);
+        p2.remove(submit);
+        p2.remove(length);
+        p2.remove(question);
+        p2.remove(no);
+        p2.remove(yes);
+
     }
 
     //creating the Panel to put in the frame
     static void createPanel(){
         p1 = new JPanel();
         p1.setLayout(null);
+        p1.setBounds(0, 0, 500, 500);
+        p2 = new JPanel();
+        p2.setLayout(null);
+        p2.setBounds(0,500,500,500);
         p1.add(view);
         p1.add(generate);
         view.setBounds(150, 180, 200, 25);
@@ -120,12 +128,14 @@ public class Main{
             @Override
             public void actionPerformed(final ActionEvent e){
                 generate = (JButton)e.getSource();
-                p1.add(question);
-                p1.add(length);
-                p1.add(submit);
+                p2.add(question);
+                p2.add(length);
+                p2.add(submit);
+                p2.revalidate();
+                p2.repaint();
                 question.setBounds(150, 250, 300, 25);
                 length.setBounds(200, 280, 100, 25);
-                submit.setBounds(200, 310, 100, 25);;
+                submit.setBounds(200, 310, 100, 25);
             }
         });
 
@@ -135,15 +145,17 @@ public class Main{
             public void actionPerformed(final ActionEvent e) {
                 lengthpass = Integer.parseInt(length.getText());
                 GenPass();
-                p1.add(unipass);
+                p2.add(unipass);
                 unipass.setText(newpass);
                 unipass.setBounds(310, 310, 100, 25);
-                p1.add(question1);
+                p2.add(question1);
                 question1.setBounds(150, 340, 300, 25);
-                p1.add(yes);
-                p1.add(no);
+                p2.add(yes);
+                p2.add(no);
                 yes.setBounds(150, 370, 100, 25);
                 no.setBounds(250, 370, 100, 25);
+                p2.revalidate();
+                p2.repaint();
 
             }
         });
@@ -151,16 +163,18 @@ public class Main{
         yes.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e) {
-               p1.add(question2);
+               p2.add(question2);
                question2.setBounds(150, 400, 300, 25);
-               p1.add(website);
+               p2.add(website);
                website.setBounds(150,430,200,25);
-               p1.add(username);
+               p2.add(username);
                username.setBounds(125,460,300,25);
-               p1.add(user);
+               p2.add(user);
                user.setBounds(150, 490, 200, 25);
-                p1.add(save);
+                p2.add(save);
                 save.setBounds(200, 520, 100, 25);
+                p2.revalidate();
+                p2.repaint();
             }
         });
 
@@ -168,7 +182,9 @@ public class Main{
             @Override
             public void actionPerformed(final ActionEvent e) {
                no= (JButton)e.getSource();
-                clear();
+               p2.removeAll();
+               p2.revalidate();
+               p2.repaint();
             }
         });
 
@@ -182,6 +198,10 @@ public class Main{
             //Created one string for username, website, and password
               info = webname+"\n"+usernme+"\n"+newpass;
                 series.add(info);
+            p2.removeAll();
+            p2.revalidate();
+            p2.repaint();
+                
             }
         });
     }
