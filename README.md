@@ -4,7 +4,7 @@
 
 This application has the ability generate multiple unique passwords in one session. Then you are able to save them to a list in that same session by providing the website the password is used for and the username. After you are done generating passwords, you are then able to view the passwords for all you websites from that session. 
 
-**Disclaimer: This appliction is not intended to save login information permanently. Once you exit the application, the list of login information from that session will be deleted. Plaese store you login information from each session in another method for long-term use.**
+**Disclaimer: This appliction is not intended to save login information permanently. Once you exit the application, the list of login information from that session will be deleted. Please store your login information from each session in another method for long-term use.**
 
 ## How to use the Application
 
